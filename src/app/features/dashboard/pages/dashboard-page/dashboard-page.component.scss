@@ -1,0 +1,93 @@
+.dashboard {
+  .page-title {
+    margin: 0 0 0.25rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--app-text);
+  }
+
+  .subtitle {
+    color: var(--app-text-muted);
+    margin: 0 0 2rem;
+    font-size: 1rem;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal), transform var(--transition-fast);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  mat-card-header {
+    mat-icon[mat-card-avatar] {
+      width: 44px;
+      height: 44px;
+      font-size: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  mat-card-content {
+    padding-top: 0.25rem;
+  }
+
+  .stat-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--app-text);
+  }
+
+  &.stat-card-total mat-icon { color: var(--app-primary); }
+  &.stat-card-todo mat-icon { color: var(--app-text-muted); }
+  &.stat-card-progress mat-icon { color: var(--app-warning); }
+  &.stat-card-review mat-icon { color: var(--app-primary); }
+  &.stat-card-testing mat-icon { color: #0ea5e9; }
+  &.stat-card-done mat-icon { color: var(--app-success); }
+  &.stat-card-warn mat-icon { color: var(--app-error); }
+  &.stat-card-warn .stat-value { color: var(--app-error); }
+}
+
+.actions {
+  margin-top: 0.5rem;
+
+  a {
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    padding: 0 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+
+    &:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    mat-icon {
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -1,0 +1,115 @@
+@use '_theme';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+::selection {
+  background: var(--app-primary-soft);
+  color: var(--app-text);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+
+  @media (min-width: 768px) {
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
+}
+
+// Typography helpers
+.page-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--app-text);
+}
+
+.page-subtitle {
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--app-text-muted);
+}
+
+// Snackbars
+.mat-mdc-snack-bar-container {
+  &.error-snack {
+    --mdc-snackbar-container-color: var(--app-error);
+    --mat-snack-bar-button-color: #fff;
+    border-radius: var(--radius-md);
+  }
+  &.success-snack {
+    --mdc-snackbar-container-color: var(--app-success);
+    --mat-snack-bar-button-color: #fff;
+    border-radius: var(--radius-md);
+  }
+}
+
+// Drag & drop
+.cdk-drag-preview {
+  opacity: 0.98;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--app-border);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.25;
+  border: 2px dashed var(--app-border);
+  border-radius: var(--radius-md);
+  background: var(--app-primary-soft);
+}
+
+.cdk-drag-animating {
+  transition: transform 280ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+// Icons
+mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+// Buttons — subtle consistency
+.mat-mdc-raised-button:not(:disabled),
+.mat-mdc-flat-button:not(:disabled) {
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.mat-mdc-form-field {
+  .mat-mdc-text-field-wrapper {
+    border-radius: var(--radius-md);
+  }
+}
+
+.mat-mdc-card {
+  border-radius: var(--radius-lg);
+  transition: box-shadow var(--transition-normal);
+}

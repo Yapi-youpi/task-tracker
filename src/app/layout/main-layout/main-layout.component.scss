@@ -1,0 +1,106 @@
+.layout-container {
+  min-height: 100vh;
+  background: var(--app-bg);
+}
+
+.sidenav {
+  width: 280px;
+  padding: 1rem 0.75rem;
+  background: var(--app-surface);
+  border-right: 1px solid var(--app-border);
+  box-shadow: var(--shadow-sm);
+
+  .mat-mdc-list-item {
+    border-radius: var(--radius-md);
+    margin: 0 0 0.25rem;
+    padding: 0 1rem;
+    height: 48px;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+
+    mat-icon {
+      margin-right: 0.75rem;
+      color: var(--app-text-muted);
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+    }
+
+    &.active {
+      background: var(--app-primary-soft);
+      color: var(--app-primary);
+      font-weight: 600;
+
+      mat-icon {
+        color: var(--app-primary);
+      }
+    }
+
+    &:hover:not(.active) {
+      background: var(--app-bg);
+    }
+  }
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+  height: 60px;
+  padding: 0 1rem;
+  box-shadow: var(--shadow-sm);
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar-title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-left: 0.5rem;
+    letter-spacing: -0.02em;
+    color: var(--app-text);
+  }
+
+  button[mat-icon-button] {
+    mat-icon {
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+      color: var(--app-text-muted);
+      transition: color var(--transition-fast);
+    }
+    &:hover mat-icon {
+      color: var(--app-text);
+    }
+  }
+
+  .user-name {
+    margin-right: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--app-text-muted);
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mat-mdc-button {
+    border-radius: var(--radius-md);
+    font-weight: 600;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    padding: 2rem 2.5rem;
+  }
+}

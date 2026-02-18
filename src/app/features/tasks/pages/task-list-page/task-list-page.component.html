@@ -1,0 +1,192 @@
+<div class="task-list-page container">
+  <header class="page-header">
+    <h1>Tasks</h1>
+    <div class="header-actions">
+      <app-view-toggle [currentMode]="viewMode()" (modeChange)="setViewMode($event)" />
+      <button mat-flat-button color="primary" (click)="openCreateDialog()" title="Create task">
+        <mat-icon>add</mat-icon>
+        <span>New task</span>
+      </button>
+    </div>
+  </header>
+
+  <app-task-filters
+    [filters]="filters()"
+    [showAdvanced]="viewMode() === 'list'"
+    [statusOptions]="statusOptions"
+    [priorityOptions]="priorityOptions"
+    [sortOptions]="sortOptions"
+    (onSearchChange)="onSearchChange($event)"
+    (onStatusFilter)="onStatusFilter($event)"
+    (onPriorityFilter)="onPriorityFilter($event)"
+    (onSortBy)="onSortBy($event)"
+    (onSortOrder)="onSortOrder($event)"
+  />
+
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  } @else if (viewMode() === 'kanban') {
+    <div class="kanban-board">
+      <div
+        class="kanban-column"
+        cdkDropList
+        id="todo"
+        [cdkDropListData]="todoTasks()"
+        [cdkDropListConnectedTo]="['in-progress', 'in-review', 'in-testing', 'done']"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="kanban-column-header kanban-header-todo">
+          <mat-icon>radio_button_unchecked</mat-icon>
+          <h3>To Do</h3>
+          <span class="count">{{ todoTasks().length }}</span>
+        </div>
+        <div class="kanban-column-cards">
+          @for (task of todoTasks(); track task.id) {
+            <app-task-card
+              [task]="task"
+              variant="kanban"
+              [statusLabel]="statusLabel(task.status)"
+              [priorityLabel]="priorityLabel(task.priority)"
+              (onEdit)="openEditDialog($event)"
+              (onDelete)="deleteTask($event)"
+            />
+          }
+        </div>
+      </div>
+      <div
+        class="kanban-column"
+        cdkDropList
+        id="in-progress"
+        [cdkDropListData]="inProgressTasks()"
+        [cdkDropListConnectedTo]="['todo', 'in-review', 'in-testing', 'done']"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="kanban-column-header kanban-header-progress">
+          <mat-icon>autorenew</mat-icon>
+          <h3>In Progress</h3>
+          <span class="count">{{ inProgressTasks().length }}</span>
+        </div>
+        <div class="kanban-column-cards">
+          @for (task of inProgressTasks(); track task.id) {
+            <app-task-card
+              [task]="task"
+              variant="kanban"
+              [statusLabel]="statusLabel(task.status)"
+              [priorityLabel]="priorityLabel(task.priority)"
+              (onEdit)="openEditDialog($event)"
+              (onDelete)="deleteTask($event)"
+            />
+          }
+        </div>
+      </div>
+      <div
+        class="kanban-column"
+        cdkDropList
+        id="in-review"
+        [cdkDropListData]="inReviewTasks()"
+        [cdkDropListConnectedTo]="['todo', 'in-progress', 'in-testing', 'done']"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="kanban-column-header kanban-header-review">
+          <mat-icon>rate_review</mat-icon>
+          <h3>In Review</h3>
+          <span class="count">{{ inReviewTasks().length }}</span>
+        </div>
+        <div class="kanban-column-cards">
+          @for (task of inReviewTasks(); track task.id) {
+            <app-task-card
+              [task]="task"
+              variant="kanban"
+              [statusLabel]="statusLabel(task.status)"
+              [priorityLabel]="priorityLabel(task.priority)"
+              (onEdit)="openEditDialog($event)"
+              (onDelete)="deleteTask($event)"
+            />
+          }
+        </div>
+      </div>
+      <div
+        class="kanban-column"
+        cdkDropList
+        id="in-testing"
+        [cdkDropListData]="inTestingTasks()"
+        [cdkDropListConnectedTo]="['todo', 'in-progress', 'in-review', 'done']"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="kanban-column-header kanban-header-testing">
+          <mat-icon>science</mat-icon>
+          <h3>In Testing</h3>
+          <span class="count">{{ inTestingTasks().length }}</span>
+        </div>
+        <div class="kanban-column-cards">
+          @for (task of inTestingTasks(); track task.id) {
+            <app-task-card
+              [task]="task"
+              variant="kanban"
+              [statusLabel]="statusLabel(task.status)"
+              [priorityLabel]="priorityLabel(task.priority)"
+              (onEdit)="openEditDialog($event)"
+              (onDelete)="deleteTask($event)"
+            />
+          }
+        </div>
+      </div>
+      <div
+        class="kanban-column"
+        cdkDropList
+        id="done"
+        [cdkDropListData]="doneTasks()"
+        [cdkDropListConnectedTo]="['todo', 'in-progress', 'in-review', 'in-testing']"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="kanban-column-header kanban-header-done">
+          <mat-icon>check_circle</mat-icon>
+          <h3>Done</h3>
+          <span class="count">{{ doneTasks().length }}</span>
+        </div>
+        <div class="kanban-column-cards">
+          @for (task of doneTasks(); track task.id) {
+            <app-task-card
+              [task]="task"
+              variant="kanban"
+              [statusLabel]="statusLabel(task.status)"
+              [priorityLabel]="priorityLabel(task.priority)"
+              (onEdit)="openEditDialog($event)"
+              (onDelete)="deleteTask($event)"
+            />
+          }
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div
+      class="task-list"
+      cdkDropList
+      [cdkDropListData]="tasks()"
+      (cdkDropListDropped)="dropInList($event)"
+    >
+      @for (task of tasks(); track task.id) {
+        <app-task-card
+          [task]="task"
+          variant="list"
+          [statusLabel]="statusLabel(task.status)"
+          [priorityLabel]="priorityLabel(task.priority)"
+          (onEdit)="openEditDialog($event)"
+          (onDelete)="deleteTask($event)"
+        />
+      } @empty {
+        <div class="empty">
+          <mat-icon>task_alt</mat-icon>
+          <p>No tasks yet</p>
+          <span>Create your first task to get started</span>
+          <button mat-flat-button color="primary" (click)="openCreateDialog()">
+            <mat-icon>add</mat-icon>
+            New task
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>

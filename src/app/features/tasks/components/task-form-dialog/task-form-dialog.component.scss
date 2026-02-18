@@ -1,0 +1,33 @@
+:host ::ng-deep .mat-mdc-dialog-container {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+h2[mat-dialog-title] {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+mat-dialog-content {
+  min-width: 320px;
+  padding-top: 0.75rem;
+}
+
+.full-width {
+  width: 100%;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+mat-dialog-actions {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+
+  button {
+    border-radius: var(--radius-md);
+    font-weight: 600;
+  }
+}

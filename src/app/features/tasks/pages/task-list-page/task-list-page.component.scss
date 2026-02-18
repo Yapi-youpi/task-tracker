@@ -1,0 +1,218 @@
+.task-list-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+    flex-shrink: 0;
+
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--app-text);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    button[mat-flat-button] {
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+
+      &:hover:not(:disabled) {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-1px);
+      }
+
+      mat-icon {
+        margin-right: 0.35rem;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  app-task-filters {
+    flex-shrink: 0;
+  }
+
+  .loading {
+    flex-shrink: 0;
+  }
+}
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  max-height: calc(100vh - 280px);
+  overflow: hidden;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kanban-column {
+  display: flex;
+  flex-direction: column;
+  background: var(--app-surface);
+  border: none;
+  border-right: 1px solid var(--app-border);
+  border-radius: 0;
+  padding: 0;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  .kanban-column-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-bottom: 2px solid var(--app-border);
+    flex-shrink: 0;
+
+    > mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      flex: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .count {
+      font-size: 0.8125rem;
+      color: var(--app-text-muted);
+      background: var(--app-bg);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+    }
+
+    &.kanban-header-todo > mat-icon { color: var(--app-text-muted); }
+    &.kanban-header-progress > mat-icon { color: var(--app-warning); }
+    &.kanban-header-review > mat-icon { color: var(--app-primary); }
+    &.kanban-header-testing > mat-icon { color: #0ea5e9; }
+    &.kanban-header-done > mat-icon { color: var(--app-success); }
+  }
+
+  .kanban-column-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    min-height: 0;
+    padding: 0 0.75rem;
+    padding-bottom: 0.75rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    // Стили для скроллбара
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--app-border);
+      border-radius: 3px;
+
+      &:hover {
+        background: var(--app-border-strong);
+      }
+    }
+  }
+}
+
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+.empty {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--app-surface);
+  border: 1px dashed var(--app-border);
+  border-radius: var(--radius-lg);
+  margin-top: 0.5rem;
+
+  > mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: var(--app-text-muted);
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    margin: 0 0 0.25rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--app-text);
+  }
+
+  span {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--app-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  button mat-icon {
+    margin-right: 0.35rem;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
