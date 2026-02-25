@@ -74,6 +74,7 @@ import type { Task } from '@features/tasks/models/task.model';
         border-radius: var(--radius-md);
         overflow: hidden;
         cursor: grab;
+        box-shadow: var(--shadow-card, var(--shadow-sm));
         transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 
         &::before {
@@ -82,7 +83,7 @@ import type { Task } from '@features/tasks/models/task.model';
           left: 0;
           top: 0;
           bottom: 0;
-          width: 4px;
+          width: 3px;
           border-radius: var(--radius-md) 0 0 var(--radius-md);
           background: var(--task-accent, var(--app-border));
           transition: width 0.2s ease, opacity 0.2s ease;
@@ -107,7 +108,7 @@ import type { Task } from '@features/tasks/models/task.model';
           border-color: var(--app-border-strong);
 
           &::before {
-            width: 5px;
+            width: 4px;
             opacity: 1;
           }
 
@@ -120,7 +121,7 @@ import type { Task } from '@features/tasks/models/task.model';
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 0.4rem;
+          padding: 0.35rem;
           color: var(--app-text-muted);
           border-bottom: 1px solid var(--app-border);
           background: var(--app-bg);
@@ -132,15 +133,16 @@ import type { Task } from '@features/tasks/models/task.model';
           }
 
           mat-icon {
-            font-size: 18px;
-            width: 18px;
-            height: 18px;
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            opacity: 0.8;
           }
         }
 
         .task-card-content {
           flex: 1;
-          padding: 0.875rem;
+          padding: 0.75rem 0.875rem;
           min-width: 0;
         }
 
@@ -149,39 +151,44 @@ import type { Task } from '@features/tasks/models/task.model';
           justify-content: space-between;
           align-items: flex-start;
           gap: 0.5rem;
-          margin-bottom: 0.35rem;
+          margin-bottom: 0.25rem;
         }
 
         .task-title {
           margin: 0;
-          font-size: 0.9375rem;
+          font-size: 0.875rem;
           font-weight: 600;
-          line-height: 1.35;
+          line-height: 1.4;
           color: var(--app-text);
           flex: 1;
           min-width: 0;
 
           &.task-title-list {
-            font-size: 1rem;
+            font-size: 0.9375rem;
           }
         }
 
         .task-actions {
           display: flex;
-          gap: 0.15rem;
-          opacity: 0.7;
+          gap: 0.1rem;
+          opacity: 0.6;
           transition: opacity 0.2s ease;
           flex-shrink: 0;
 
+          button {
+            width: 32px;
+            height: 32px;
+          }
+
           button mat-icon {
-            font-size: 18px;
-            width: 18px;
-            height: 18px;
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
           }
         }
 
         .task-description {
-          margin: 0 0 0.6rem;
+          margin: 0 0 0.5rem;
           font-size: 0.8125rem;
           color: var(--app-text-muted);
           line-height: 1.45;
@@ -195,7 +202,7 @@ import type { Task } from '@features/tasks/models/task.model';
           display: flex;
           align-items: center;
           flex-wrap: wrap;
-          gap: 0.75rem;
+          gap: 0.5rem;
           margin-top: 0.5rem;
           padding-top: 0.5rem;
           border-top: 1px solid var(--app-border);
@@ -204,28 +211,29 @@ import type { Task } from '@features/tasks/models/task.model';
         .task-deadline {
           display: inline-flex;
           align-items: center;
-          gap: 0.25rem;
-          font-size: 0.75rem;
+          gap: 0.2rem;
+          font-size: 0.6875rem;
           color: var(--app-text-muted);
           margin-left: auto;
 
           mat-icon {
-            font-size: 14px;
-            width: 14px;
-            height: 14px;
-            opacity: 0.9;
+            font-size: 12px;
+            width: 12px;
+            height: 12px;
+            opacity: 0.85;
           }
         }
 
         &.kanban-card .task-card-content {
-          padding-top: 0.75rem;
+          padding-top: 0.625rem;
         }
 
         &.task-card-list {
           background: var(--app-surface);
+          box-shadow: var(--shadow-sm);
 
           .task-description {
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             -webkit-line-clamp: 2;
           }
         }

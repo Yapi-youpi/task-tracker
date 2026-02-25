@@ -4,25 +4,25 @@
 }
 
 .sidenav {
-  width: 280px;
-  padding: 1rem 0.75rem;
+  width: 260px;
+  padding: 0.75rem 0.5rem;
   background: var(--app-surface);
   border-right: 1px solid var(--app-border);
   box-shadow: var(--shadow-sm);
 
   .mat-mdc-list-item {
     border-radius: var(--radius-md);
-    margin: 0 0 0.25rem;
-    padding: 0 1rem;
-    height: 48px;
+    margin: 0 0 0.15rem;
+    padding: 0 0.875rem;
+    height: 44px;
     transition: background-color var(--transition-fast), color var(--transition-fast);
 
     mat-icon {
       margin-right: 0.75rem;
       color: var(--app-text-muted);
-      font-size: 22px;
-      width: 22px;
-      height: 22px;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
     }
 
     &.active {
@@ -47,7 +47,7 @@
   z-index: 10;
   background: var(--app-surface);
   border-bottom: 1px solid var(--app-border);
-  height: 60px;
+  height: 56px;
   padding: 0 1rem;
   box-shadow: var(--shadow-sm);
 
@@ -57,7 +57,7 @@
 
   .toolbar-title {
     font-weight: 700;
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     margin-left: 0.5rem;
     letter-spacing: -0.02em;
     color: var(--app-text);
@@ -65,9 +65,9 @@
 
   button[mat-icon-button] {
     mat-icon {
-      font-size: 22px;
-      width: 22px;
-      height: 22px;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
       color: var(--app-text-muted);
       transition: color var(--transition-fast);
     }
@@ -77,10 +77,10 @@
   }
 
   .user-name {
-    margin-right: 0.75rem;
-    font-size: 0.875rem;
+    margin-right: 0.5rem;
+    font-size: 0.8125rem;
     color: var(--app-text-muted);
-    max-width: 160px;
+    max-width: 140px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -89,18 +89,28 @@
   .mat-mdc-button {
     border-radius: var(--radius-md);
     font-weight: 600;
+    font-size: 0.875rem;
   }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
-  min-height: calc(100vh - 60px);
-  height: calc(100vh - 60px);
+  padding: 1rem 1rem;
+  min-height: calc(100vh - 56px);
+  height: calc(100vh - 56px);
   overflow: hidden;
 
+  // Роут-компонент (следующий за outlet) растягивается на всю высоту
+  router-outlet + * {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+
   @media (min-width: 768px) {
-    padding: 2rem 2.5rem;
+    padding: 1.25rem 1.5rem;
   }
 }

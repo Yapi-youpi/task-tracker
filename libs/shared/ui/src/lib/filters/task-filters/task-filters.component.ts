@@ -62,12 +62,30 @@ import type { TaskFilters, TaskPriority, TaskStatus } from '@features/tasks/mode
       .filters {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        align-items: center;
+        gap: 0.75rem 1rem;
+        margin-bottom: 1.25rem;
+        padding: 0.875rem 1rem;
+        background: var(--app-surface);
+        border: 1px solid var(--app-border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-card, 0 1px 3px rgba(0, 0, 0, 0.05));
 
         .filter-field {
-          min-width: 140px;
-          max-width: 220px;
+          min-width: 130px;
+          max-width: 200px;
+
+          ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+            display: none;
+          }
+          ::ng-deep .mat-mdc-text-field-wrapper {
+            padding: 0 12px;
+          }
+          ::ng-deep .mat-mdc-form-field-infix {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            min-height: 44px;
+          }
         }
       }
     `,

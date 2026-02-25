@@ -38,18 +38,20 @@ export type ViewMode = 'list' | 'kanban';
         overflow: hidden;
         border: 1px solid var(--app-border);
         background: var(--app-surface);
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--shadow-card, 0 1px 3px rgba(0, 0, 0, 0.05));
 
         button {
           min-width: auto;
-          padding: 0 1rem;
-          gap: 0.4rem;
+          padding: 0 0.75rem;
+          gap: 0.35rem;
+          font-size: 0.8125rem;
+          font-weight: 500;
           transition: background-color var(--transition-fast), color var(--transition-fast);
 
           mat-icon {
-            font-size: 20px;
-            width: 20px;
-            height: 20px;
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
           }
 
           &.active {
