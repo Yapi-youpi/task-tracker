@@ -70,8 +70,8 @@ export class PriorityBadgeComponent {
 
   priorityIcon(): string {
     const p = this.priority();
-    if (p === 'high') return 'keyboard_double_arrow_up';
+    if (p === 'high') return 'expand_less';
     if (p === 'medium') return 'drag_handle';
-    return 'keyboard_double_arrow_down';
+    return 'expand_more';
   }
 }
