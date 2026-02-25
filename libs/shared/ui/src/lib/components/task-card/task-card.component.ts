@@ -89,13 +89,13 @@ import type { Task } from '@features/tasks/models/task.model';
         }
 
         &[data-priority='low']::before {
-          --task-accent: #94a3b8;
+          --task-accent: #64748b;
         }
         &[data-priority='medium']::before {
-          --task-accent: #d97706;
+          --task-accent: #ca8a04;
         }
         &[data-priority='high']::before {
-          --task-accent: #dc2626;
+          --task-accent: #b91c1c;
         }
 
         &:active {
