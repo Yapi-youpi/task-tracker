@@ -41,7 +41,9 @@ jobs:
     steps:
       - name: Trigger deploy via hook
         if: ${{ env.BACKEND_DEPLOY_HOOK_URL != '' }}
-        run: curl -fsS -X POST "$BACKEND_DEPLOY_HOOK_URL"
+        run: |
+          curl -fsS -X POST "$BACKEND_DEPLOY_HOOK_URL" \
+            || curl -fsS "$BACKEND_DEPLOY_HOOK_URL"
 
       - name: Show setup instructions
         if: ${{ env.BACKEND_DEPLOY_HOOK_URL == '' }}
