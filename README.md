@@ -148,3 +148,33 @@ The repo includes workflow `.github/workflows/deploy-frontend.yml` that deploys 
 - Push to `main` (or run workflow manually from **Actions** tab).
 - Workflow builds app with base href `/<repo-name>/`.
 - Artifact from `dist/task-tracker-app/browser` is published to GitHub Pages.
+
+## GitHub Actions deployment (Backend)
+
+The repo includes workflow `.github/workflows/deploy-backend.yml` that verifies backend and triggers deploy webhook.
+
+### One-time setup in cloud provider
+
+Create a backend service from `server/` folder with:
+
+- Build command: `npm ci`
+- Start command: `npm start`
+- Root directory: `server`
+
+Set required env vars in provider:
+
+- `DATABASE_URL` (PostgreSQL connection string)
+- `JWT_SECRET` (strong random secret)
+- `CORS_ORIGINS` (comma-separated allowed frontend URLs)
+
+### One-time setup in GitHub
+
+Add repo secret:
+
+- `BACKEND_DEPLOY_HOOK_URL` — deploy webhook URL from your provider
+  (for example Render Deploy Hook URL).
+
+### Deploy flow
+
+- On push to `main` (changes in `server/**`) workflow validates backend files.
+- If `BACKEND_DEPLOY_HOOK_URL` exists, workflow sends POST request to trigger backend deploy.
