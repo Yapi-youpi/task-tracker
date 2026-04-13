@@ -131,3 +131,20 @@ Base URL: configurable via `environment.apiUrl` (e.g. `http://localhost:3000/api
 - Add E2E with Cypress/Playwright and CI for PRs.
 - Monitor errors (e.g. Sentry) and performance (Web Vitals).
 - Enforce strict CSP and security headers in production.
+
+## GitHub Actions deployment (Frontend)
+
+The repo includes workflow `.github/workflows/deploy-frontend.yml` that deploys Angular to GitHub Pages on every push to `main`.
+
+### One-time setup in GitHub
+
+1. Go to **Settings -> Pages** and set **Build and deployment** source to **GitHub Actions**.
+2. (Optional) Add repo secret `FRONTEND_API_URL` with your backend URL, for example:
+   - `https://your-api-domain.com/api`
+   - If secret is missing, app uses default `/api`.
+
+### Deploy flow
+
+- Push to `main` (or run workflow manually from **Actions** tab).
+- Workflow builds app with base href `/<repo-name>/`.
+- Artifact from `dist/task-tracker-app/browser` is published to GitHub Pages.
