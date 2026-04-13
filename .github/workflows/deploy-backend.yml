@@ -36,18 +36,15 @@ jobs:
     name: Trigger backend deploy
     runs-on: ubuntu-latest
     needs: verify
-    if: ${{ secrets.BACKEND_DEPLOY_HOOK_URL != '' }}
+    env:
+      BACKEND_DEPLOY_HOOK_URL: ${{ secrets.BACKEND_DEPLOY_HOOK_URL }}
     steps:
       - name: Trigger deploy via hook
-        run: curl -fsS -X POST "${{ secrets.BACKEND_DEPLOY_HOOK_URL }}"
+        if: ${{ env.BACKEND_DEPLOY_HOOK_URL != '' }}
+        run: curl -fsS -X POST "$BACKEND_DEPLOY_HOOK_URL"
 
-  deploy-not-configured:
-    name: Deploy hook not configured
-    runs-on: ubuntu-latest
-    needs: verify
-    if: ${{ secrets.BACKEND_DEPLOY_HOOK_URL == '' }}
-    steps:
       - name: Show setup instructions
+        if: ${{ env.BACKEND_DEPLOY_HOOK_URL == '' }}
         run: |
           echo "BACKEND_DEPLOY_HOOK_URL is not configured."
           echo "Set repository secret BACKEND_DEPLOY_HOOK_URL with your platform deploy webhook."
