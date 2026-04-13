@@ -2,6 +2,13 @@
 
 Production-ready Angular 19 task tracker with auth, dashboard, and CRUD tasks. Built with standalone components, signals, and feature-based architecture.
 
+## Live demo
+
+- Frontend: `https://yapi-youpi.github.io/task-tracker`
+- Test credentials:
+  - Email: `test@mail.com`
+  - Password: `123456`
+
 ## Requirements
 
 - **Node.js** 18.19+ or 20.11+ (see `engines` in `package.json`)
