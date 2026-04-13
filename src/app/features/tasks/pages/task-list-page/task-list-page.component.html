@@ -49,6 +49,7 @@
               variant="kanban"
               [statusLabel]="statusLabel(task.status)"
               [priorityLabel]="priorityLabel(task.priority)"
+              (onCardClick)="openViewDialog($event)"
               (onEdit)="openEditDialog($event)"
               (onDelete)="deleteTask($event)"
             />
@@ -75,6 +76,7 @@
               variant="kanban"
               [statusLabel]="statusLabel(task.status)"
               [priorityLabel]="priorityLabel(task.priority)"
+              (onCardClick)="openViewDialog($event)"
               (onEdit)="openEditDialog($event)"
               (onDelete)="deleteTask($event)"
             />
@@ -101,6 +103,7 @@
               variant="kanban"
               [statusLabel]="statusLabel(task.status)"
               [priorityLabel]="priorityLabel(task.priority)"
+              (onCardClick)="openViewDialog($event)"
               (onEdit)="openEditDialog($event)"
               (onDelete)="deleteTask($event)"
             />
@@ -127,6 +130,7 @@
               variant="kanban"
               [statusLabel]="statusLabel(task.status)"
               [priorityLabel]="priorityLabel(task.priority)"
+              (onCardClick)="openViewDialog($event)"
               (onEdit)="openEditDialog($event)"
               (onDelete)="deleteTask($event)"
             />
@@ -153,6 +157,7 @@
               variant="kanban"
               [statusLabel]="statusLabel(task.status)"
               [priorityLabel]="priorityLabel(task.priority)"
+              (onCardClick)="openViewDialog($event)"
               (onEdit)="openEditDialog($event)"
               (onDelete)="deleteTask($event)"
             />
@@ -173,6 +178,7 @@
           variant="list"
           [statusLabel]="statusLabel(task.status)"
           [priorityLabel]="priorityLabel(task.priority)"
+          (onCardClick)="openViewDialog($event)"
           (onEdit)="openEditDialog($event)"
           (onDelete)="deleteTask($event)"
         />

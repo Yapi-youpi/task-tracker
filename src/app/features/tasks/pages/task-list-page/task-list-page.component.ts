@@ -14,6 +14,7 @@ import { TasksService } from '../../services/tasks.service';
 import { ErrorHandlerService } from '../../../../core/services/error-handler.service';
 import type { Task, TaskStatus, TaskPriority } from '../../models/task.model';
 import { TaskFormDialogComponent } from '../../components/task-form-dialog/task-form-dialog.component';
+import { TaskViewDialogComponent } from '../../components/task-view-dialog/task-view-dialog.component';
 import {
   TaskCardComponent,
   TaskFiltersComponent,
@@ -122,6 +123,16 @@ export class TaskListPageComponent implements OnInit {
     });
     ref.afterClosed().subscribe((created) => {
       if (created) this.errorHandler.showSuccess('Task created');
+    });
+  }
+
+  openViewDialog(task: Task): void {
+    const ref = this.dialog.open(TaskViewDialogComponent, {
+      width: 'min(480px, 95vw)',
+      data: task,
+    });
+    ref.afterClosed().subscribe((result) => {
+      if (result?.action === 'delete') this.deleteTask(result.id);
     });
   }
 

@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ task.title }}</h2>
+<mat-dialog-content>
+  <div class="task-view-field">
+    <span class="label">Status</span>
+    <app-status-badge [status]="task.status" [label]="statusLabel(task.status)" />
+  </div>
+  <div class="task-view-field">
+    <span class="label">Priority</span>
+    <app-priority-badge [priority]="task.priority" [label]="priorityLabel(task.priority)" />
+  </div>
+  @if (task.deadline) {
+    <div class="task-view-field">
+      <span class="label">Deadline</span>
+      <span class="value">{{ task.deadline | formatDate }}</span>
+    </div>
+  }
+  @if (task.description) {
+    <div class="task-view-field task-view-description">
+      <span class="label">Description</span>
+      <p class="value">{{ task.description }}</p>
+    </div>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+  <button mat-button color="warn" (click)="delete()">
+    <mat-icon>delete</mat-icon>
+    Delete
+  </button>
+  <button mat-flat-button color="primary" (click)="edit()">
+    <mat-icon>edit</mat-icon>
+    Edit
+  </button>
+</mat-dialog-actions>
